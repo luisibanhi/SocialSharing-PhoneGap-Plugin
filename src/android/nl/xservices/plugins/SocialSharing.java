@@ -130,7 +130,7 @@ public class SocialSharing extends CordovaPlugin {
     final SocialSharing plugin = this;
     cordova.getThreadPool().execute(new SocialSharingRunnable(callbackContext) {
       public void run() {
-        final Intent draft = new Intent(Intent.ACTION_SEND_MULTIPLE);
+        final Intent draft = new Intent(Intent.ACTION_SEND);
         if (notEmpty(message)) {
           Pattern htmlPattern = Pattern.compile(".*\\<[^>]+>.*", Pattern.DOTALL);
           if (htmlPattern.matcher(message).matches()) {
@@ -249,7 +249,7 @@ public class SocialSharing extends CordovaPlugin {
       public void run() {
         String message = msg;
         final boolean hasMultipleAttachments = files.length() > 1;
-        final Intent sendIntent = new Intent(hasMultipleAttachments ? Intent.ACTION_SEND_MULTIPLE : Intent.ACTION_SEND);
+        final Intent sendIntent = new Intent(Intent.ACTION_SEND);
         sendIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
 
         try {
